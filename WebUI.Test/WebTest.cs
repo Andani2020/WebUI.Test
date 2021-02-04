@@ -26,14 +26,10 @@ namespace WebUI.Test
             {
                 driver.Navigate().GoToUrl(homePageUrl);
                 driver.Manage().Window.Maximize();
-
                 DemoHelper.Pause();
-
                 string pageTitle = driver.Title;
                 Assert.Equal(homeTitle, pageTitle);
                 Assert.Equal(homePageUrl, driver.Url);
-
-
             }
 
         }
@@ -49,11 +45,8 @@ namespace WebUI.Test
                 driver.Navigate().Refresh();
                 DemoHelper.Pause();
                 string pageTitle = driver.Title;
-
                 Assert.Equal(homeTitle, pageTitle);
                 Assert.Equal(homePageUrl, driver.Url);
-
-
             }
         }
         [Fact]
@@ -68,9 +61,6 @@ namespace WebUI.Test
                 DemoHelper.Pause();
                 driver.Navigate().Back();
                 DemoHelper.Pause();
-
-
-
                 string pageTitle = driver.Title;
                 Assert.Equal(homeTitle, pageTitle);
                 Assert.Equal(homePageUrl, driver.Url);
@@ -87,17 +77,13 @@ namespace WebUI.Test
 
                 driver.Navigate().GoToUrl(sportsUrl);
                 DemoHelper.Pause();
-
                 driver.Navigate().GoToUrl(homePageUrl);
                 DemoHelper.Pause();
-
                 driver.Navigate().Forward();
                 DemoHelper.Pause();
-
                 string pageTitle = driver.Title;
                 Assert.Equal(sportsHomeTitle, pageTitle);
                 Assert.Equal(sportsUrl, driver.Url);
-
             }
 
         }
@@ -106,26 +92,18 @@ namespace WebUI.Test
         {
             using (IWebDriver driver = new ChromeDriver())
             {
-
-
                 driver.Navigate().GoToUrl(homePageUrl);
                 driver.Manage().Window.Maximize();
                 DemoHelper.Pause();
                 var sportsLink = driver.FindElement(By.LinkText("sports"));
                 string sportsText = sportsLink.Text;
-
                 DemoHelper.Pause();
                 driver.FindElement(By.LinkText("sports")).Click();
-
-
                 DemoHelper.Pause();
-
-
                 string pageTitle = driver.Title;
                 Assert.Equal("sports", sportsText);
                 Assert.Equal(sportsHomeTitle, pageTitle);
                 Assert.Equal(sportsUrl, driver.Url);
-
             }
 
         }
@@ -147,8 +125,7 @@ namespace WebUI.Test
                 driver.FindElement(By.LinkText("sports")).Click();
                 DemoHelper.Pause();
                 // driver.FindElement(By.ClassName("icon-cross"));
-
-                driver.FindElement(By.CssSelector("[placeholder='Username']")).SendKeys("neha_sabikhi");
+                driver.FindElement(By.CssSelector("[placeholder='Username']")).SendKeys("Andani");
                 driver.FindElement(By.CssSelector("[placeholder='Password']")).SendKeys("123456");
 
                 DemoHelper.Pause();
@@ -156,26 +133,11 @@ namespace WebUI.Test
                 driver.FindElement(By.ClassName("cookiePolicyAcceptButton")).Click();
                 DemoHelper.Pause(3);
                 driver.FindElement(By.ClassName("submitButton")).Click();
-
-
-
-
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-
-
                 driver.FindElement(By.ClassName("Carousel_next")).Click();
-
-
-
                 driver.FindElement(By.LinkText("esports")).Click();
 
-
-
-
             }
-
-
-
         }
         [Fact]
         [Trait("Category", "Smoke")]
@@ -184,8 +146,6 @@ namespace WebUI.Test
 
             using (IWebDriver driver = new ChromeDriver())
             {
-
-
                 driver.Navigate().GoToUrl(homePageUrl);
                 driver.Manage().Window.Maximize();
                 DemoHelper.Pause();
@@ -197,11 +157,6 @@ namespace WebUI.Test
 
                 Assert.Equal("Responsible Gambling",quickLinks[0].Text);
                 Assert.Equal("Daily Football Matches", quickLinks[1].Text);
-
-
-
-
-
             }
         }
 
@@ -215,24 +170,18 @@ namespace WebUI.Test
                 driver.Navigate().GoToUrl(homePageUrl);
                 driver.Manage().Window.Maximize();
                 DemoHelper.Pause();
-               
                 //var sportsLink = driver.FindElement(By.LinkText("sports"));
                 driver.FindElement(By.CssSelector("[aria-label='Sign up']")).Click();
-
                 DemoHelper.Pause();
-
-                driver.FindElement(By.Id("Comp1_Title")).Click();
-
-                driver.FindElement(By.CssSelector("[value='Mrs']")).Click();
-
                 
-                    driver.FindElement(By.Id("Comp2_FirstName")).SendKeys("Jane");
+                driver.FindElement(By.Id("Comp1_Title")).Click();
+                driver.FindElement(By.CssSelector("[value='Mrs']")).Click();
+                driver.FindElement(By.Id("Comp2_FirstName")).SendKeys("Jane");
                 DemoHelper.Pause();
                 driver.FindElement(By.Id("Comp3_Surname")).SendKeys("Brown");
-                DemoHelper.Pause();
+
                 DemoHelper.Pause();
                 driver.FindElement(By.CssSelector("[value = '1992']")).Click();
-               
                 driver.FindElement(By.Id("Comp4_DateDropdownMonth")).Click();
                 DemoHelper.Pause();
                 driver.FindElement(By.CssSelector("[value = '3']")).Click();
@@ -247,8 +196,6 @@ namespace WebUI.Test
 
                 //driver.FindElement(By.Id("Comp4_DateDropdownValue")).Click();
                 //driver.FindElement(By.CssSelector("[value = '28']")).Click();
-
-
 
                 driver.FindElement(By.Id("Comp15_OptInBonus")).Click();
                 driver.FindElement(By.Id("Comp16_TermsAndConditions")).Click();
