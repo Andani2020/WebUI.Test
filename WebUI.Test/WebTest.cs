@@ -4,6 +4,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,50 @@ namespace WebUI.Test
                 string pageTitle = driver.Title;
                 Assert.Equal(homeTitle, pageTitle);
                 Assert.Equal(homePageUrl, driver.Url);
+            }
+
+        }
+        [Fact]
+        public void NotDisplayCookies()
+        {
+            using (IWebDriver driver = new ChromeDriver())
+            {
+                driver.Navigate().GoToUrl(homePageUrl);
+                driver.Manage().Window.Maximize();
+                DemoHelper.Pause();
+
+                driver.Manage().Cookies.AddCookie(new Cookie("AcceptedCookies", "true"));
+
+                driver.Navigate().Refresh();
+                ReadOnlyCollection<IWebElement> messege = driver.FindElements(By.Id("CookiesBeingUsed"));
+
+                Assert.Empty(messege);
+
+                Cookie cookieValue = driver.Manage().Cookies.GetCookieNamed("acceptedCookies");
+                Assert.Equal("true", cookieValue.Value);
+                driver.Manage().Cookies.DeleteCookieNamed("acceptedCookies");
+
+
+            }
+
+
+
+        }
+
+        [Fact]
+        public void PageScreanShot()
+        {
+            using (IWebDriver driver = new ChromeDriver())
+            {
+                driver.Navigate().GoToUrl(homePageUrl);
+                driver.Manage().Window.Maximize();
+
+                ITakesScreenshot screenShotDriver = (ITakesScreenshot)driver;
+                Screenshot screenshot = screenShotDriver.GetScreenshot();
+                screenshot.SaveAsFile("loginPage.bmp", ScreenshotImageFormat.Bmp);
+                FileInfo file = new FileInfo("loginPage.bmp");
+                //Approvals.Verify(file);
+
             }
 
         }
